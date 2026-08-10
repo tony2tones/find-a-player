@@ -1,0 +1,30 @@
+<p>login-component works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label for="email">Email</label>
+  <input
+    id="email"
+    type="text"
+    formControlName="email"
+    placeholder="Enter email"
+    [attr.aria-describedby]="loginForm.controls['email'].invalid ? 'email-error' : null"
+    [attr.aria-invalid]="loginForm.controls['email'].invalid"
+  />
+  @if (!loginForm.controls['email'].valid) {
+    <p>Please enter a valid email.</p>
+  }
+
+  <label for="password">Password</label>
+  <input
+    id="password"
+    type="password"
+    formControlName="password"
+    placeholder="Enter a valid password"
+    [attr.aria-describedby]="loginForm.controls['password'].invalid ? 'password-error' : null"
+    [attr.aria-invalid]="loginForm.controls['password'].invalid"
+  />
+  @if (!loginForm.controls['password'].valid) {
+    <p>Please enter a valid email.</p>
+  }
+
+  <button type="submit">Submit</button>
+</form>

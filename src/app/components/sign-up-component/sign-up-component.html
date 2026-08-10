@@ -1,0 +1,9 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-2 m-5">
+  <label for="email">Email</label>
+  <input id="email" type="text" formControlName="email" class="border border-blue-600" />
+  <label for="password">Passowrd</label>
+  <input id="password" type="password" formControlName="password" class="border border-blue-600" />
+  <button type="submit" class="bg-blue-400 hover:cursor-pointer" >
+    Submit
+  </button>
+</form>
