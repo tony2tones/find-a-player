@@ -1,11 +1,11 @@
-<p>login-component works!</p>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-2 m-5">
   <label for="email">Email</label>
   <input
     id="email"
     type="text"
     formControlName="email"
     placeholder="Enter email"
+    class="border border-blue-600"
     [attr.aria-describedby]="loginForm.controls['email'].invalid ? 'email-error' : null"
     [attr.aria-invalid]="loginForm.controls['email'].invalid"
   />
@@ -19,6 +19,7 @@
     type="password"
     formControlName="password"
     placeholder="Enter a valid password"
+    class="border border-blue-600"
     [attr.aria-describedby]="loginForm.controls['password'].invalid ? 'password-error' : null"
     [attr.aria-invalid]="loginForm.controls['password'].invalid"
   />
