@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../auth-service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-component',
@@ -11,16 +13,25 @@ import { AuthService } from '../../auth-service';
 export class LoginComponent {
   authService = inject(AuthService);
   fb = inject(FormBuilder);
+  router = inject(Router);
+  toastr = inject(ToastrService);
 
   loginForm = this.fb.nonNullable.group({
     email: ['', [Validators.email, Validators.required]],
     password: ['', [Validators.minLength(4), Validators.required]],
   });
 
-  onSubmit() {
+  async onSubmit() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.getRawValue();
-      this.authService.login({ email, password });
+      let res = await this.authService.login({ email, password });
+      if(res.success) {
+        this.toastr.success('Login successful');
+        this.router.navigate(['dashboard']);
+      } else {
+        console.log(res.message);
+        this.toastr.success(`${res.message}`);
+      }
     }
   }
 }

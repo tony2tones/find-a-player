@@ -1,0 +1,15 @@
+<nav>
+  <div class="flex justify-between gap-2">
+    <div class="flex gap-2">
+      @for (link of navLinks; track link.id) {
+        <div>
+          <a class="p-4 m-2 hover:cursor-pointer" [routerLink]="link.route" routerLinkActive="text-blue-600 font-bold">{{ link.name }}</a>
+        </div>
+      }
+    </div>
+    <div>
+        <button class="pb-4 m-2 hover:cursor-pointer" (click)="logout()">Logout</button>
+    </div>
+</div>
+
+</nav>
