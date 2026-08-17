@@ -1,0 +1,12 @@
+<div class="fixed inset-0 w-screen h-screen bg-black/50 flex justify-center items-center z-[1000]" *ngIf="isOpen" (click)="closeModal()">
+  <!-- stopPropagation stops click events inside the modal from firing the backdrop close event -->
+  <div class="bg-white rounded-[8px] w-[500px] max-w-[90%] shadow-[0_4px_15px_rgba(0,0,0,0.2)] flex flex-col" (click)="$event.stopPropagation()">
+    <header class="p-4 flex justify-between items-center border-b border-[#eee]">
+      <h3>{{ modalTitle }}</h3>
+      <button class="bg-transparent border-none text-[1.5rem] cursor-pointer" (click)="closeModal()">&times;</button>
+    </header>
+    <section class="p-4 overflow-y-auto">
+      <ng-content></ng-content>
+    </section>
+  </div>
+</div>

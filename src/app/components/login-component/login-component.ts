@@ -30,7 +30,7 @@ export class LoginComponent {
         this.router.navigate(['dashboard']);
       } else {
         console.log(res.message);
-        this.toastr.success(`${res.message}`);
+        this.toastr.error(`${res.message}`);
       }
     }
   }
