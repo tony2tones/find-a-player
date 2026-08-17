@@ -1,1 +1,24 @@
-<p>dashboard-component works!</p>
+@let profile = playerProfile$ | async;
+
+@if (profile) {
+  <app-profile-view-component [profile]="profile" (isEdit)="toggleModal(true)"></app-profile-view-component>
+} @else if (playerService.loading) {
+  <p>Profile loading</p>
+} @else {
+  <p>You have not set up a profile</p>
+  
+  <button class="hover:cursor-pointer p-2 m-1 bg-blue-500" (click)="toggleModal(true)">
+      {{ profile ? 'Edit Profile' : 'Setup now?' }}
+    </button>
+}
+
+<app-modal-component
+  [isOpen]="isModalOpen"
+  modalTitle="Update Profile"
+  (closeMe)="toggleModal(false)"
+>
+  <app-user-profile-component
+    [profile]="profile"
+    (closed)="toggleModal(false)"
+  ></app-user-profile-component>
+</app-modal-component>
